@@ -1,12 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import './templates/root.css';
-import './templates/reset.css';
-import './templates/utility.css';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "@fontsource-variable/manrope";
+import "@fontsource/instrument-serif/400.css";
+import "@fontsource/instrument-serif/400-italic.css";
+import "@fontsource/ibm-plex-mono/400.css";
+import App from "./App";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
