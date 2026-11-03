@@ -33,12 +33,17 @@ test("the English portfolio renders offline with the approved public projects", 
     expect(
       screen.getByText("Mahdi Rezaei", { selector: "strong" }),
     ).toBeInTheDocument();
-    expect(screen.getAllByRole("article")).toHaveLength(5);
+    expect(screen.getAllByRole("article")).toHaveLength(10);
     expect(
       screen
         .getAllByRole("article")
         .map((article) => within(article).getByRole("heading").textContent),
     ).toEqual([
+      "Hazara Mom Stitches",
+      "Ruby100",
+      "NAA Trading",
+      "Zarin",
+      "Power House",
       "Clinic Management System",
       "Air Pollution Metrics",
       "SpaceX Explorer",
@@ -49,7 +54,9 @@ test("the English portfolio renders offline with the approved public projects", 
       screen.queryByText(/Selected user Not found/),
     ).not.toBeInTheDocument();
     expect(global.fetch).not.toHaveBeenCalled();
-    expect(document.querySelector('a[href="/resume.pdf"]')).toBeNull();
+    expect(
+      screen.getByRole("link", { name: /Download resume/ }),
+    ).toHaveAttribute("href", "/Mahdi-Rezaei-Resume.pdf");
   } finally {
     global.fetch = originalFetch;
   }
@@ -58,7 +65,7 @@ test("the English portfolio renders offline with the approved public projects", 
 test("project filters and case details expose the correct repository and verified demo", () => {
   render(<App />);
   fireEvent.click(screen.getByRole("button", { name: /Business systems/ }));
-  expect(screen.getAllByRole("article")).toHaveLength(1);
+  expect(screen.getAllByRole("article")).toHaveLength(6);
   expect(
     screen.queryByRole("button", { name: "Air Pollution Metrics" }),
   ).not.toBeInTheDocument();
@@ -82,7 +89,33 @@ test("project filters and case details expose the correct repository and verifie
   );
   expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
   fireEvent.click(screen.getByRole("button", { name: /All work/ }));
-  expect(screen.getAllByRole("article")).toHaveLength(5);
+  expect(screen.getAllByRole("article")).toHaveLength(10);
+});
+
+test("independent projects use real screenshots and public website links", () => {
+  render(<App />);
+  fireEvent.click(screen.getByRole("button", { name: "Power House" }));
+  const dialog = screen.getByRole("dialog", { name: "Power House" });
+  expect(
+    within(dialog).getByRole("link", { name: /View public sign-in page/ }),
+  ).toHaveAttribute("href", "https://support.ydsp.ir/");
+  expect(
+    within(dialog).queryByRole("link", { name: /View repository/ }),
+  ).not.toBeInTheDocument();
+  expect(
+    within(dialog).getByText(/Application access requires an account/),
+  ).toBeInTheDocument();
+  expect(within(dialog).getByRole("img")).toHaveAttribute(
+    "src",
+    "/projects/power-house.jpg",
+  );
+  fireEvent.click(
+    within(dialog).getByRole("button", { name: "Close project details" }),
+  );
+  fireEvent.click(screen.getByRole("button", { name: "NAA Trading" }));
+  expect(
+    screen.getByText(/sample catalog data and simulated form submissions/),
+  ).toBeInTheDocument();
 });
 
 test("mobile navigation supports opening, following a link and Escape focus recovery", () => {

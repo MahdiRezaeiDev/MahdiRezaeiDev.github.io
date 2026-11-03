@@ -540,6 +540,35 @@ svg {
   position: relative;
   overflow: hidden;
 }
+.project-art.cover-website {
+  aspect-ratio: 1.76;
+  border: 1px solid var(--line);
+  background: var(--paper-deep);
+}
+.cover-website img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 24px 32px;
+  margin-top: 36px;
+}
+.hero-actions .text-action {
+  margin-top: 0;
+}
+.resume-download {
+  font-size: 12px;
+}
+.project-role {
+  font-size: 10px;
+  color: var(--accent);
+  margin: 18px 0 24px;
+}
 .cover-letters {
   background: #ded9cc;
 }

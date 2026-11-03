@@ -1,10 +1,10 @@
 /**
  * Public content maintained alongside the portfolio.
- * Sources: https://github.com/MahdiRezaeiDev and the linked repositories.
+ * Sources: the owner's confirmed independent work, public websites and linked repositories.
  * Employment history and proficiency ratings are not inferred from activity.
  * @typedef {{name: string, address: string}} SocialLink
  * @typedef {{id: string, name: string, additionalInfo: string,
- *   url: string, technologies: string[]}} Project
+ *   url: string, technologies: string[], linkLabel?: string}} Project
  */
 export const profile = {
   person: {
@@ -34,6 +34,51 @@ export const profile = {
   ].map((name) => ({ name })),
   /** @type {Project[]} */
   projects: [
+    {
+      id: "hazara-mom-stitches",
+      name: "Hazara Mom Stitches",
+      additionalInfo:
+        "An independent full-stack e-commerce project for Hazaragi clothing, with product collections, a wishlist, cart and order tracking.",
+      url: "https://hms.naatrading.com/",
+      linkLabel: "Visit website",
+      technologies: ["Laravel", "Livewire", "PHP"],
+    },
+    {
+      id: "ruby100",
+      name: "Ruby100",
+      additionalInfo:
+        "A Laravel business website for towing and car-removal services in Melbourne, with quote enquiries, service information and contact options.",
+      url: "https://ruby100.ltd/",
+      linkLabel: "Visit website",
+      technologies: ["Laravel", "PHP", "Business website"],
+    },
+    {
+      id: "naa-trading",
+      name: "NAA Trading",
+      additionalInfo:
+        "An independent full-stack network-equipment catalog, with specifications, product comparison and enquiry lists. The public site is a client demonstration.",
+      url: "https://naatrading.com/en",
+      linkLabel: "View public demonstration",
+      technologies: ["Laravel", "Vue", "TypeScript", "Inertia.js"],
+    },
+    {
+      id: "zarin",
+      name: "Zarin",
+      additionalInfo:
+        "A tailoring and clothing website with Persian collections and consultation options, alongside business management for customers, orders and workshop operations.",
+      url: "https://check.ydsp.ir/",
+      linkLabel: "Visit website",
+      technologies: ["Laravel", "PHP", "Tailoring operations"],
+    },
+    {
+      id: "power-house",
+      name: "Power House",
+      additionalInfo:
+        "An independent full-stack gym-management application for memberships, subscriptions, locker rentals, receipts and cash reporting.",
+      url: "https://support.ydsp.ir/",
+      linkLabel: "View public sign-in page",
+      technologies: ["Laravel", "Vue", "TypeScript", "Inertia.js"],
+    },
     {
       id: "clinic-management-system",
       name: "Clinic Management System",

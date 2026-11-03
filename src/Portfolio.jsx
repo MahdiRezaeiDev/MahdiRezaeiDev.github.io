@@ -3,6 +3,68 @@ import { profile } from "./data/profile";
 import "./portfolio.css";
 
 const projectNotes = {
+  "hazara-mom-stitches": {
+    category: "Business systems",
+    cover: "store",
+    image: "/projects/hazara-mom-stitches.jpg",
+    label: "Independent / E-commerce",
+    role: "Independent project / Full-Stack Developer",
+    features: [
+      "Product collections for clothing and embroidered goods",
+      "English and Persian interfaces",
+      "Wishlist, cart and order-tracking experience",
+    ],
+  },
+  ruby100: {
+    category: "Business systems",
+    cover: "services",
+    image: "/projects/ruby100.jpg",
+    label: "Independent / Business website",
+    role: "Independent project / Full-Stack Developer",
+    features: [
+      "Service pages for towing and car removal",
+      "Quote-enquiry and contact workflows",
+      "Blog and informational content",
+    ],
+  },
+  "naa-trading": {
+    category: "Business systems",
+    cover: "catalog",
+    image: "/projects/naa-trading.jpg",
+    label: "Independent / Catalog demonstration",
+    role: "Independent project / Full-Stack Developer",
+    note: "The public client demonstration uses sample catalog data and simulated form submissions.",
+    features: [
+      "Equipment catalog and product specifications",
+      "Product comparison and enquiry-list workflows",
+      "Multilingual interface and content pages",
+    ],
+  },
+  zarin: {
+    category: "Business systems",
+    cover: "tailoring",
+    image: "/projects/zarin.jpg",
+    label: "Independent / Tailoring",
+    role: "Independent project / Full-Stack Developer",
+    features: [
+      "Persian collections and custom-tailoring service pages",
+      "Consultation and contact options",
+      "Customer, order, production, sales and inventory workflows",
+    ],
+  },
+  "power-house": {
+    category: "Business systems",
+    cover: "fitness",
+    image: "/projects/power-house.jpg",
+    label: "Independent / Gym management",
+    role: "Independent project / Full-Stack Developer",
+    note: "The public link opens the sign-in page. Application access requires an account.",
+    features: [
+      "Membership and subscription workflows",
+      "Locker rentals, receipts and cash reporting",
+      "Jalali-date support for day-to-day operations",
+    ],
+  },
   "clinic-management-system": {
     category: "Business systems",
     cover: "clinic",
@@ -243,7 +305,9 @@ function Hero() {
       <div className="hero-copy">
         <div className="eyebrow">
           <span className="status-dot" />
-          <span className="mono">OPEN TO OPPORTUNITIES & COLLABORATION</span>
+          <span className="mono">
+            OPEN TO INTERNATIONAL REMOTE OPPORTUNITIES
+          </span>
         </div>
         <h1 id="hero-title">
           Complex workflows.
@@ -255,12 +319,21 @@ function Hero() {
           business applications and thoughtful interfaces with Laravel, React
           and TypeScript.
         </p>
-        <a className="text-action" href="#work">
-          <span className="circle-arrow">
-            <Arrow />
-          </span>
-          <span>Explore selected work</span>
-        </a>
+        <div className="hero-actions">
+          <a className="text-action" href="#work">
+            <span className="circle-arrow">
+              <Arrow />
+            </span>
+            <span>Explore selected work</span>
+          </a>
+          <a
+            className="underlined-link resume-download"
+            href="/Mahdi-Rezaei-Resume.pdf"
+            download
+          >
+            Download resume <Arrow diagonal />
+          </a>
+        </div>
       </div>
       <HeroArt />
       <div className="hero-foot mono">
@@ -273,8 +346,20 @@ function Hero() {
   );
 }
 
-/** @param {{cover: string}} props */
-function ProjectArt({ cover }) {
+/** @param {{cover: string, image?: string, name?: string}} props */
+function ProjectArt({ cover, image, name }) {
+  if (image) {
+    return (
+      <div className="project-art cover-website">
+        <img
+          src={image}
+          alt={name + " public website screenshot"}
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    );
+  }
   return (
     <div className={"project-art cover-" + cover} aria-hidden="true">
       {cover === "letters" && (
@@ -394,7 +479,11 @@ function ProjectCard({ project, featured, onOpen, index }) {
           aria-label={"Explore " + project.name}
           onClick={() => onOpen(project)}
         >
-          <ProjectArt cover={project.cover} />
+          <ProjectArt
+            cover={project.cover}
+            image={project.image}
+            name={project.name}
+          />
           <span className="cover-open">
             <Arrow diagonal />
           </span>
@@ -414,7 +503,7 @@ function ProjectCard({ project, featured, onOpen, index }) {
         <p>{project.additionalInfo}</p>
         <ul
           className="project-stack"
-          aria-label={project.name + " technologies"}
+          aria-label={project.name + " stack and focus"}
         >
           {project.technologies.map((technology) => (
             <li key={technology}>{technology}</li>
@@ -468,13 +557,20 @@ function ProjectDialog({ project, onClose }) {
           >
             Close <span aria-hidden="true">×</span>
           </button>
-          <ProjectArt cover={project.cover} />
+          <ProjectArt
+            cover={project.cover}
+            image={project.image}
+            name={project.name}
+          />
           <div className="dialog-body">
             <p className="mono dialog-label">
               {project.category} / {project.label}
             </p>
             <h2 id="project-dialog-title">{project.name}</h2>
             <p id="project-dialog-description">{project.additionalInfo}</p>
+            {project.role && (
+              <p className="project-role mono">{project.role}</p>
+            )}
             <h3>What it does</h3>
             <ul className="feature-list">
               {project.features.map((feature) => (
@@ -489,6 +585,9 @@ function ProjectDialog({ project, onClose }) {
             {project.collaboration && (
               <p className="collaboration-note">{project.collaboration}</p>
             )}
+            {project.note && (
+              <p className="collaboration-note">{project.note}</p>
+            )}
             <div className="dialog-actions">
               <a
                 className="solid-button"
@@ -496,7 +595,7 @@ function ProjectDialog({ project, onClose }) {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                View repository <Arrow diagonal />
+                {project.linkLabel || "View repository"} <Arrow diagonal />
               </a>
               {project.demo && (
                 <a
@@ -774,7 +873,7 @@ function Contact() {
             </p>
           </div>
           <p>
-            I’m open to full-stack development opportunities and collaboration.
+            I’m open to international remote full-stack roles and collaboration.
             Let’s talk about what you have in mind.
           </p>
         </div>
