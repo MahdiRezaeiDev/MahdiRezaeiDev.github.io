@@ -11,7 +11,7 @@ export const profile = {
     name: "Mahdi Rezaei",
     publicId: "MahdiRezaeiDev",
     summaryOfBio:
-      "I build web applications that turn everyday workflows into practical tools. My work spans administrative correspondence, clinic management and interactive, API-driven interfaces. I work with PHP, Laravel, React and TypeScript.",
+      "I build web applications that turn everyday workflows into practical tools. My public work includes business management tools and interactive, API-driven interfaces. I work with PHP, Laravel, React and TypeScript.",
     /** @type {SocialLink[]} */
     links: [
       { name: "github", address: "https://github.com/MahdiRezaeiDev" },
@@ -34,14 +34,6 @@ export const profile = {
   ].map((name) => ({ name })),
   /** @type {Project[]} */
   projects: [
-    {
-      id: "administrative-correspondence",
-      name: "Administrative Correspondence",
-      additionalInfo:
-        "Letter routing, archives, reports and real-time notifications for administrative workflows.",
-      url: "https://github.com/MahdiRezaeiDev/administrative-correspondence",
-      technologies: ["Laravel", "React", "Inertia", "TypeScript"],
-    },
     {
       id: "clinic-management-system",
       name: "Clinic Management System",

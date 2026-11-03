@@ -19,7 +19,7 @@ beforeAll(() => {
   };
 });
 
-test("the English portfolio renders offline with all six projects", () => {
+test("the English portfolio renders offline with the approved public projects", () => {
   const originalFetch = global.fetch;
   global.fetch = jest.fn(() => Promise.reject(new Error("Offline")));
   try {
@@ -33,7 +33,18 @@ test("the English portfolio renders offline with all six projects", () => {
     expect(
       screen.getByText("Mahdi Rezaei", { selector: "strong" }),
     ).toBeInTheDocument();
-    expect(screen.getAllByRole("article")).toHaveLength(6);
+    expect(screen.getAllByRole("article")).toHaveLength(5);
+    expect(
+      screen
+        .getAllByRole("article")
+        .map((article) => within(article).getByRole("heading").textContent),
+    ).toEqual([
+      "Clinic Management System",
+      "Air Pollution Metrics",
+      "SpaceX Explorer",
+      "Math Magicians",
+      "Awesome Books",
+    ]);
     expect(
       screen.queryByText(/Selected user Not found/),
     ).not.toBeInTheDocument();
@@ -47,7 +58,7 @@ test("the English portfolio renders offline with all six projects", () => {
 test("project filters and case details expose the correct repository and verified demo", () => {
   render(<App />);
   fireEvent.click(screen.getByRole("button", { name: /Business systems/ }));
-  expect(screen.getAllByRole("article")).toHaveLength(2);
+  expect(screen.getAllByRole("article")).toHaveLength(1);
   expect(
     screen.queryByRole("button", { name: "Air Pollution Metrics" }),
   ).not.toBeInTheDocument();
@@ -71,7 +82,7 @@ test("project filters and case details expose the correct repository and verifie
   );
   expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
   fireEvent.click(screen.getByRole("button", { name: /All work/ }));
-  expect(screen.getAllByRole("article")).toHaveLength(6);
+  expect(screen.getAllByRole("article")).toHaveLength(5);
 });
 
 test("mobile navigation supports opening, following a link and Escape focus recovery", () => {

@@ -6,7 +6,7 @@ An English portfolio for a full-stack developer working with Laravel, PHP, React
 
 ## Experience
 
-- Six selected public projects with category filters, accessible project dialogs and repository links.
+- Five selected public projects with category filters, accessible project dialogs and repository links.
 - Verified live demos for Air Pollution Metrics and Awesome Books.
 - Technical focus, approach and direct contact links.
 - Mobile navigation, keyboard focus, reduced-motion support and a clipboard fallback.

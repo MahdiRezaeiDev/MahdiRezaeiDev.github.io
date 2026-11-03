@@ -3,16 +3,6 @@ import { profile } from "./data/profile";
 import "./portfolio.css";
 
 const projectNotes = {
-  "administrative-correspondence": {
-    category: "Business systems",
-    cover: "letters",
-    label: "Administrative workflow",
-    features: [
-      "Letter routing and status management",
-      "Document archives and reporting",
-      "Real-time notifications with Laravel Reverb",
-    ],
-  },
   "clinic-management-system": {
     category: "Business systems",
     cover: "clinic",
@@ -572,7 +562,9 @@ function Work() {
             </button>
           ))}
         </div>
-        <span className="mono work-index">PROJECT INDEX / 01—06</span>
+        <span className="mono work-index">
+          PROJECT INDEX / 01—{String(projects.length).padStart(2, "0")}
+        </span>
       </div>
       <p className="sr-only" role="status">
         {shown.length} projects shown
@@ -635,10 +627,9 @@ function About() {
               workflows into practical tools.
             </p>
             <p>
-              My public work spans administrative correspondence, clinic
-              management, API-driven interfaces and smaller frontend
-              experiments. I care about how a system is put together — and how
-              it feels to use.
+              My public work includes business management tools, API-driven
+              interfaces and smaller frontend experiments. I care about how a
+              system is put together — and how it feels to use.
             </p>
             <a
               className="underlined-link"
